@@ -1,0 +1,980 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Internet India - Test Modern Internet Standards</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-blue: #2563eb;
+            --primary-saffron: #f59e0b;
+            --primary-teal: #0d9488;
+            --text-dark: #1e293b;
+            --text-light: #f8fafc;
+            --bg-light: #f8fafc;
+            --bg-dark: #0f172a;
+            --card-bg-light: #ffffff;
+            --card-bg-dark: #1e293b;
+            --nav-bg-light: rgba(255, 255, 255, 0.97);
+            --nav-bg-dark: rgba(15, 23, 42, 0.97);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--text-dark);
+            background-color: var(--bg-light);
+            line-height: 1.6;
+            padding-top: 80px;
+        }
+
+        body.dark-mode {
+            color: var(--text-light);
+            background-color: var(--bg-dark);
+        }
+
+        body.high-contrast {
+            --text-dark: #000000;
+            --text-light: #ffffff;
+            --bg-light: #ffffff;
+            --bg-dark: #000000;
+            --card-bg-light: #f0f0f0;
+            --card-bg-dark: #222222;
+            --primary-blue: #0044cc;
+            --primary-saffron: #cc8800;
+            --primary-teal: #006666;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            padding: 20px 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: var(--nav-bg-light);
+            backdrop-filter: blur(8px);
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .dark-mode header {
+            background-color: var(--nav-bg-dark);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .header-container {
+            width: 100%;
+            max-width: 1200px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-blue);
+            text-decoration: none;
+            flex: 1;
+            min-width: 200px;
+        }
+
+        nav {
+            flex: 2;
+            min-width: 0;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            justify-content: center;
+            gap: 25px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: inherit;
+            font-weight: 500;
+            padding: 8px 0;
+            position: relative;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary-blue);
+            transition: width 0.3s;
+        }
+
+        .dark-mode nav a::after {
+            background-color: var(--primary-saffron);
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        .utility-controls {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            justify-content: flex-end;
+            flex: 1;
+            min-width: 200px;
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--primary-blue);
+            color: var(--primary-blue);
+            cursor: pointer;
+            font-size: 0.9rem;
+            padding: 6px 15px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-weight: 500;
+            transition: all 0.2s;
+        }
+
+        .dark-mode .btn-outline {
+            border-color: var(--primary-saffron);
+            color: var(--primary-saffron);
+        }
+
+        .btn-outline:hover {
+            background-color: rgba(37, 99, 235, 0.1);
+        }
+
+        .dark-mode .btn-outline:hover {
+            background-color: rgba(245, 158, 11, 0.1);
+        }
+
+        .theme-toggle {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1.2rem;
+            color: var(--primary-blue);
+            padding: 8px;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+        }
+
+        .dark-mode .theme-toggle {
+            color: var(--primary-saffron);
+        }
+
+        .theme-toggle:hover {
+            background-color: rgba(37, 99, 235, 0.1);
+        }
+
+        .dark-mode .theme-toggle:hover {
+            background-color: rgba(245, 158, 11, 0.1);
+        }
+
+        /* Banner Section */
+        .banner {
+            background: linear-gradient(135deg, var(--primary-teal), var(--primary-blue));
+            color: white;
+            padding: 40px 0;
+            text-align: center;
+            border-radius: 0 0 20px 20px;
+            margin-bottom: 40px;
+        }
+
+        .banner h1 {
+            font-size: 2rem;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .banner p {
+            font-size: 1.1rem;
+            max-width: 800px;
+            margin: 0 auto 15px;
+            opacity: 0.9;
+        }
+
+        .language-hindi {
+            display: none;
+        }
+
+        body.hindi .language-english {
+            display: none;
+        }
+
+        body.hindi .language-hindi {
+            display: block;
+        }
+
+        /* Tests Section */
+        .tests-section {
+            padding: 40px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 2rem;
+            color: var(--primary-blue);
+        }
+
+        .dark-mode .section-title {
+            color: var(--primary-saffron);
+        }
+
+        .cards-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .test-card {
+            background-color: var(--card-bg-light);
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .dark-mode .test-card {
+            background-color: var(--card-bg-dark);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+        }
+
+        .test-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+
+        .dark-mode .test-card:hover {
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.4);
+        }
+
+        .test-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--primary-blue);
+        }
+
+        .dark-mode .test-card h3 {
+            color: var(--primary-saffron);
+        }
+
+        .test-card p {
+            margin-bottom: 20px;
+            color: inherit;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-family: inherit;
+        }
+
+        .dark-mode .input-group input {
+            background-color: #334155;
+            border-color: #475569;
+            color: white;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            background-color: var(--primary-blue);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+
+        .btn:hover {
+            background-color: #1d4ed8;
+            transform: translateY(-2px);
+        }
+
+        .dark-mode .btn {
+            background-color: var(--primary-saffron);
+            color: var(--text-dark);
+        }
+
+        .dark-mode .btn:hover {
+            background-color: #d97706;
+        }
+
+        /* Test Results */
+        .test-results {
+            margin-top: 20px;
+        }
+
+        .test-result {
+            margin-bottom: 15px;
+            padding: 15px;
+            border-radius: 8px;
+            background-color: rgba(0,0,0,0.05);
+        }
+
+        .dark-mode .test-result {
+            background-color: rgba(255,255,255,0.05);
+        }
+
+        .test-result.success {
+            border-left: 4px solid #10B981;
+        }
+
+        .test-result.failure {
+            border-left: 4px solid #EF4444;
+        }
+
+        .test-result .test-name {
+            font-weight: 600;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .test-result .test-description {
+            font-size: 0.9em;
+            opacity: 0.8;
+            margin-left: 24px;
+        }
+
+        .spinner {
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--card-bg-light);
+            padding: 40px 0 20px;
+            margin-top: 60px;
+        }
+
+        .dark-mode footer {
+            background-color: var(--card-bg-dark);
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .footer-column h4 {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            color: var(--primary-blue);
+        }
+
+        .dark-mode .footer-column h4 {
+            color: var(--primary-saffron);
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column li {
+            margin-bottom: 10px;
+        }
+
+        .footer-column a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .footer-column a:hover {
+            color: var(--primary-blue);
+            text-decoration: underline;
+        }
+
+        .dark-mode .footer-column a:hover {
+            color: var(--primary-saffron);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #ddd;
+        }
+
+        .dark-mode .copyright {
+            border-top-color: #334155;
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 992px) {
+            nav ul {
+                gap: 15px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding-top: 70px;
+            }
+            
+            .header-container {
+                flex-direction: column;
+                gap: 15px;
+                padding: 0 15px;
+            }
+            
+            .logo, nav, .utility-controls {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            nav ul {
+                flex-wrap: wrap;
+                gap: 10px 20px;
+            }
+            
+            .utility-controls {
+                justify-content: center;
+                margin-top: 10px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .banner {
+                padding: 30px 0;
+            }
+
+            .banner h1 {
+                font-size: 1.5rem;
+            }
+
+            .test-card {
+                padding: 20px;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .btn-outline {
+                padding: 6px 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <a href="#" class="logo">
+                <i class="fas fa-globe-asia"></i>
+                <span>Internet India</span>
+            </a>
+            
+            <nav>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">News</a></li>
+                    <li><a href="#">Knowledge Base</a></li>
+                    <li><a href="#">Hall of Fame</a></li>
+                    <li><a href="#">About</a></li>
+                </ul>
+            </nav>
+            
+            <div class="utility-controls">
+                <button class="btn-outline" id="languageToggle">
+                    <i class="fas fa-language"></i>
+                    <span class="language-label">हिंदी</span>
+                </button>
+                <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+                    <i class="far fa-moon"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <section class="banner">
+        <div class="container">
+            <h1 class="language-english">Modern Internet Standards</h1>
+            <h1 class="language-hindi">आधुनिक इंटरनेट मानक</h1>
+            
+            <p class="language-english">Modern Internet Standards provide for more reliability and further growth of the Internet. Are you using them?</p>
+            <p class="language-hindi">आधुनिक इंटरनेट मानक इंटरनेट की विश्वसनीयता और विकास में मदद करते हैं। क्या आप इनका उपयोग कर रहे हैं?</p>
+        </div>
+    </section>
+
+    <section class="tests-section">
+        <div class="container">
+            <h2 class="section-title language-english">Test Your Internet Standards</h2>
+            <h2 class="section-title language-hindi">अपने इंटरनेट मानकों का परीक्षण करें</h2>
+            
+            <div class="cards-container">
+                <div class="test-card">
+                    <h3 class="language-english">Website Test</h3>
+                    <h3 class="language-hindi">वेबसाइट परीक्षण</h3>
+                    <p class="language-english">Check if your website meets modern standards for security, performance, and accessibility.</p>
+                    <p class="language-hindi">जांचें कि क्या आपकी वेबसाइट सुरक्षा, प्रदर्शन और पहुंच के लिए आधुनिक मानकों को पूरा करती है।</p>
+                    
+                    <div class="input-group">
+                        <input type="text" placeholder="Enter website URL (e.g., example.com)" aria-label="Website URL">
+                    </div>
+                    
+                    <button class="btn" id="websiteTestBtn">
+                        <i class="fas fa-play"></i> <span class="language-english">Start Test</span><span class="language-hindi">परीक्षण शुरू करें</span>
+                    </button>
+                    
+                    <div class="test-results" id="websiteResults"></div>
+                </div>
+                
+                <div class="test-card">
+                    <h3 class="language-english">Email Test</h3>
+                    <h3 class="language-hindi">ईमेल परीक्षण</h3>
+                    <p class="language-english">Verify your email setup for security standards like SPF, DKIM, DMARC, and more.</p>
+                    <p class="language-hindi">SPF, DKIM, DMARC जैसे सुरक्षा मानकों के लिए अपने ईमेल सेटअप को सत्यापित करें।</p>
+                    
+                    <div class="input-group">
+                        <input type="text" placeholder="Enter domain name (e.g., example.com)" aria-label="Email domain">
+                    </div>
+                    
+                    <button class="btn" id="emailTestBtn">
+                        <i class="fas fa-play"></i> <span class="language-english">Start Test</span><span class="language-hindi">परीक्षण शुरू करें</span>
+                    </button>
+                    
+                    <div class="test-results" id="emailResults"></div>
+                </div>
+                
+                <div class="test-card">
+                    <h3 class="language-english">Connection Test</h3>
+                    <h3 class="language-hindi">कनेक्शन परीक्षण</h3>
+                    <p class="language-english">Analyze your internet connection for IPv6, DNS security, and other modern protocols.</p>
+                    <p class="language-hindi">IPv6, DNS सुरक्षा और अन्य आधुनिक प्रोटोकॉल के लिए अपने इंटरनेट कनेक्शन का विश्लेषण करें।</p>
+                    
+                    <div class="input-group">
+                        <input type="text" placeholder="Your IP will be detected automatically" aria-label="Connection test" disabled>
+                    </div>
+                    
+                    <button class="btn" id="connectionTestBtn">
+                        <i class="fas fa-play"></i> <span class="language-english">Start Test</span><span class="language-hindi">परीक्षण शुरू करें</span>
+                    </button>
+                    
+                    <div class="test-results" id="connectionResults"></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h4 class="language-english">Internet India</h4>
+                    <h4 class="language-hindi">इंटरनेट इंडिया</h4>
+                    <ul>
+                        <li><a href="#" class="language-english">About Us</a><a href="#" class="language-hindi">हमारे बारे में</a></li>
+                        <li><a href="#" class="language-english">Our Mission</a><a href="#" class="language-hindi">हमारा मिशन</a></li>
+                        <li><a href="#" class="language-english">Team</a><a href="#" class="language-hindi">टीम</a></li>
+                        <li><a href="#" class="language-english">Careers</a><a href="#" class="language-hindi">करियर</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h4 class="language-english">Resources</h4>
+                    <h4 class="language-hindi">संसाधन</h4>
+                    <ul>
+                        <li><a href="#" class="language-english">Knowledge Base</a><a href="#" class="language-hindi">ज्ञानकोश</a></li>
+                        <li><a href="#" class="language-english">Tutorials</a><a href="#" class="language-hindi">ट्यूटोरियल</a></li>
+                        <li><a href="#" class="language-english">Standards</a><a href="#" class="language-hindi">मानक</a></li>
+                        <li><a href="#" class="language-english">Research</a><a href="#" class="language-hindi">अनुसंधान</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h4 class="language-english">Community</h4>
+                    <h4 class="language-hindi">समुदाय</h4>
+                    <ul>
+                        <li><a href="#" class="language-english">Hall of Fame</a><a href="#" class="language-hindi">प्रशंसा पत्र</a></li>
+                        <li><a href="#" class="language-english">Contributors</a><a href="#" class="language-hindi">योगदानकर्ता</a></li>
+                        <li><a href="#" class="language-english">Events</a><a href="#" class="language-hindi">आयोजन</a></li>
+                        <li><a href="#" class="language-english">Forum</a><a href="#" class="language-hindi">मंच</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h4 class="language-english">Connect</h4>
+                    <h4 class="language-hindi">जुड़ें</h4>
+                    <ul>
+                        <li><a href="#"><i class="fab fa-twitter"></i> <span class="language-english">Twitter</span><span class="language-hindi">ट्विटर</span></a></li>
+                        <li><a href="#"><i class="fab fa-github"></i> <span class="language-english">GitHub</span><span class="language-hindi">गिटहब</span></a></li>
+                        <li><a href="#"><i class="fab fa-linkedin"></i> <span class="language-english">LinkedIn</span><span class="language-hindi">लिंक्डइन</span></a></li>
+                        <li><a href="#"><i class="fas fa-envelope"></i> <span class="language-english">Contact</span><span class="language-hindi">संपर्क</span></a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p class="language-english">&copy; 2023 Internet India. All rights reserved.</p>
+                <p class="language-hindi">&copy; 2023 इंटरनेट इंडिया। सर्वाधिकार सुरक्षित।</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Language Toggle
+        const languageToggle = document.getElementById('languageToggle');
+        const languageLabel = languageToggle.querySelector('.language-label');
+        
+        languageToggle.addEventListener('click', () => {
+            document.body.classList.toggle('hindi');
+            
+            if (document.body.classList.contains('hindi')) {
+                languageLabel.textContent = 'English';
+            } else {
+                languageLabel.textContent = 'हिंदी';
+            }
+            
+            // Save preference to localStorage
+            localStorage.setItem('language', document.body.classList.contains('hindi') ? 'hindi' : 'english');
+        });
+        
+        // Check for saved language preference
+        if (localStorage.getItem('language') === 'hindi') {
+            document.body.classList.add('hindi');
+            languageLabel.textContent = 'English';
+        }
+        
+        // Theme Toggle (Dark Mode + High Contrast)
+        const themeToggle = document.getElementById('themeToggle');
+        const themeIcon = themeToggle.querySelector('i');
+        let themeState = 0; // 0 = light, 1 = dark, 2 = high contrast
+        
+        themeToggle.addEventListener('click', () => {
+            themeState = (themeState + 1) % 3;
+            
+            // Reset all classes first
+            document.body.classList.remove('dark-mode', 'high-contrast');
+            
+            // Apply appropriate classes
+            if (themeState === 1) {
+                document.body.classList.add('dark-mode');
+                themeIcon.classList.remove('far', 'fa-moon', 'fa-sun');
+                themeIcon.classList.add('fas', 'fa-sun');
+                themeToggle.setAttribute('aria-label', 'Toggle light mode');
+            } else if (themeState === 2) {
+                document.body.classList.add('dark-mode', 'high-contrast');
+                themeIcon.classList.remove('fas', 'fa-sun', 'fa-adjust');
+                themeIcon.classList.add('fas', 'fa-adjust');
+                themeToggle.setAttribute('aria-label', 'Toggle normal mode');
+            } else {
+                themeIcon.classList.remove('fas', 'fa-sun', 'fa-adjust');
+                themeIcon.classList.add('far', 'fa-moon');
+                themeToggle.setAttribute('aria-label', 'Toggle dark mode');
+            }
+            
+            // Save preference to localStorage
+            localStorage.setItem('themeState', themeState.toString());
+        });
+        
+        // Check for saved theme preference
+        const savedThemeState = localStorage.getItem('themeState');
+        if (savedThemeState) {
+            themeState = parseInt(savedThemeState);
+            
+            // Apply appropriate classes
+            if (themeState === 1) {
+                document.body.classList.add('dark-mode');
+                themeIcon.classList.remove('far', 'fa-moon', 'fa-sun');
+                themeIcon.classList.add('fas', 'fa-sun');
+                themeToggle.setAttribute('aria-label', 'Toggle light mode');
+            } else if (themeState === 2) {
+                document.body.classList.add('dark-mode', 'high-contrast');
+                themeIcon.classList.remove('fas', 'fa-sun', 'fa-adjust');
+                themeIcon.classList.add('fas', 'fa-adjust');
+                themeToggle.setAttribute('aria-label', 'Toggle normal mode');
+            }
+        }
+
+        // Test Functions
+        async function dnsLookup(domain, type = 'A') {
+            try {
+                const response = await fetch(`https://dns.google/resolve?name=${encodeURIComponent(domain)}&type=${type}`);
+                const data = await response.json();
+                return data.Answer ? data.Answer.map(a => a.data) : [];
+            } catch (error) {
+                console.error('DNS lookup failed:', error);
+                return [];
+            }
+        }
+
+        async function isReachable(url) {
+            try {
+                const response = await fetch(url, { 
+                    method: 'HEAD',
+                    mode: 'no-cors',
+                    cache: 'no-store'
+                });
+                return true;
+            } catch (error) {
+                return false;
+            }
+        }
+
+        // Website Test Functions
+        async function testIPv6(domain) {
+            try {
+                const ipv6 = await dnsLookup(domain, 'AAAA');
+                return ipv6.length > 0;
+            } catch {
+                return false;
+            }
+        }
+
+        async function testDNSSEC(domain) {
+            try {
+                const response = await fetch(`https://dnssec-analyzer.vercel.app/api/analyze?domain=${encodeURIComponent(domain)}`);
+                const data = await response.json();
+                return data.dnssec === 'valid';
+            } catch {
+                return false;
+            }
+        }
+
+        async function testHTTPS(domain) {
+            return await isReachable(`https://${domain}`);
+        }
+
+        async function testSecurityHeaders(domain) {
+            try {
+                const response = await fetch(`https://securityheaders.com/?q=${encodeURIComponent(domain)}&hide=on&followRedirects=on`);
+                const text = await response.text();
+                return {
+                    hsts: text.includes('Strict-Transport-Security'),
+                    xss: text.includes('X-XSS-Protection'),
+                    frameOptions: text.includes('X-Frame-Options'),
+                    contentType: text.includes('X-Content-Type-Options'),
+                    csp: text.includes('Content-Security-Policy')
+                };
+            } catch {
+                return false;
+            }
+        }
+
+        // Email Test Functions
+        async function testSPF(domain) {
+            try {
+                const records = await dnsLookup(domain, 'TXT');
+                return records.some(r => r.includes('v=spf1'));
+            } catch {
+                return false;
+            }
+        }
+
+        async function testDKIM(domain) {
+            try {
+                // Check for default DKIM selector
+                const records = await dnsLookup(`default._domainkey.${domain}`, 'TXT');
+                return records.length > 0;
+            } catch {
+                return false;
+            }
+        }
+
+        async function testDMARC(domain) {
+            try {
+                const records = await dnsLookup(`_dmarc.${domain}`, 'TXT');
+                return records.some(r => r.includes('v=DMARC1'));
+            } catch {
+                return false;
+            }
+        }
+
+        // Connection Test Functions
+        async function testClientIPv6() {
+            try {
+                // Try to fetch from an IPv6-only test URL
+                await fetch('https://ipv6-test.com/api/myip.php', { mode: 'no-cors' });
+                return true;
+            } catch {
+                return false;
+            }
+        }
+
+        // Main Test Functions
+        async function testWebsite() {
+            const domain = document.querySelector('#websiteTestBtn').closest('.test-card').querySelector('input').value.trim();
+            if (!domain) return alert('Please enter a domain name');
+            
+            const btn = document.getElementById('websiteTestBtn');
+            const resultsContainer = document.getElementById('websiteResults');
+            
+            btn.disabled = true;
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Testing...';
+            resultsContainer.innerHTML = '';
+            
+            try {
+                // Create loading indicators
+                const tests = [
+                    { name: 'IPv6', func: testIPv6, desc: 'Website is reachable via IPv6' },
+                    { name: 'DNSSEC', func: testDNSSEC, desc: 'Domain names are cryptographically signed' },
+                    { name: 'HTTPS', func: testHTTPS, desc: 'Website uses secure HTTPS connection' },
+                    { name: 'Security Headers', func: testSecurityHeaders, desc: 'Important security headers are set' }
+                ];
+                
+                for (const test of tests) {
+                    const loadingDiv = document.createElement('div');
+                    loadingDiv.className = 'test-result';
+                    loadingDiv.innerHTML = `
+                        <div class="test-name"><i class="fas fa-spinner spinner"></i> ${test.name}</div>
+                        <div class="test-description">${test.desc}</div>
+                    `;
+                    resultsContainer.appendChild(loadingDiv);
+                    
+                    const result = await test.func(domain);
+                    loadingDiv.className = `test-result ${result ? 'success' : 'failure'}`;
+                    
+                    let resultContent = '';
+                    if (typeof result === 'object') {
+                        // For security headers which return an object
+                        resultContent = Object.entries(result).map(([header, supported]) => `
+                            <div class="test-description">
+                                <i class="fas ${supported ? 'fa-check-circle' : 'fa-times-circle'}"></i>
+                                ${header}: ${supported ? 'Yes' : 'No'}
+                            </div>
+                        `).join('');
+                    }
+                    
+                    loadingDiv.innerHTML = `
+                        <div class="test-name">
+                            <i class="fas ${result ? 'fa-check-circle' : 'fa-times-circle'}"></i>
+                            ${test.name}
+                        </div>
+                        <div class="test-description">${test.desc}</div>
+                        ${resultContent}
+                    `;
+                }
+            } catch (error) {
+                alert('Test failed: ' + error.message);
+            } finally {
+                btn.disabled = false;
+                btn.innerHTML = '<i class="fas fa-play"></i> <span class="language-english">Start Test</span><span class="language-hindi">परीक्षण शुरू करें</span>';
+            }
+        }
+
+        async function testEmail() {
+            const domain = document.querySelector('#emailTestBtn').closest('.test-card').querySelector('input').value.trim();
+            if (!domain) return alert('Please enter a domain name');
+            
+            const btn = document.getElementById('emailTestBtn');
+            const resultsContainer = document.getElementById('emailResults');
+            
+            btn.disabled = true;
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Testing...';
+            resultsContainer.innerHTML = '';
+            
+            try {
+                const tests = [
+                    { name: 'SPF', func: testSPF, desc: 'Sender Policy Framework record exists' },
+                    { name: 'DKIM', func: testDKIM, desc: 'DomainKeys Identified Mail record exists' },
+                    { name: 'DMARC', func: testDMARC, desc: 'Domain-based Message Authentication reporting exists' }
+                ];
+                
+                for (const test of tests) {
+                    const loadingDiv = document.createElement('div');
+                    loadingDiv.className = 'test-result';
+                    loadingDiv.innerHTML = `
+                        <div class="test-name"><i class="fas fa-spinner spinner"></i> ${test.name}</div>
+                        <div class="test-description">${test.desc}</div>
+                    `;
+                    resultsContainer.appendChild(loadingDiv);
+                    
+                    const result = await test.func(domain);
+                    loadingDiv.className = `test-result ${result ? 'success' : 'failure'}`;
+                    loadingDiv.innerHTML = `
+                        <div class="test-name">
+                            <i class="fas ${result ? 'fa-check-circle' : 'fa-times-circle'}"></i>
+                            ${test.name}
+                        </div>
+                        <div class="test-description">${test.desc}</div>
+                    `;
+                }
+            } catch (error) {
+                alert('Test failed: ' + error.message);
+            } finally {
+                btn.disabled = false;
+                btn.innerHTML = '<i class="fas fa-play"></i> <span class="language-english">Start Test</span><span class="language-hindi">परीक्षण शुरू करें</span>';
+            }
+        }
+
+        async function testConnection() {
+            const btn = document.getElementById('connectionTestBtn');
+            const resultsContainer = document.getElementById('connectionResults');
+            
+            btn.disabled = true;
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Testing...';
+            resultsContainer.innerHTML = '';
+            
+            try {
+                const tests = [
+                    { name: 'IPv6', func: testClientIPv6, desc: 'Your connection supports IPv6' }
+                ];
+                
+                for (const test of tests) {
+                    const loadingDiv = document.createElement('div');
+                    loadingDiv.className = 'test-result';
+                    loadingDiv.innerHTML = `
+                        <div class="test-name"><i class="fas fa-spinner spinner"></i> ${test.name}</div>
+                        <div class="test-description">${test.desc}</div>
+                    `;
+                    resultsContainer.appendChild(loadingDiv);
+                    
+                    const result = await test.func();
+                    loadingDiv.className = `test-result ${result ? 'success' : 'failure'}`;
+                    loadingDiv.innerHTML = `
+                        <div class="test-name">
