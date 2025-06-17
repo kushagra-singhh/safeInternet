@@ -3,12 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Internet Security Checker</title>
+    <title>Internet India - Test Modern Internet Standards</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
             --primary-blue: #2563eb;
+            --primary-saffron: #f59e0b;
             --primary-teal: #0d9488;
             --text-dark: #1e293b;
             --text-light: #f8fafc;
@@ -16,6 +17,8 @@
             --bg-dark: #0f172a;
             --card-bg-light: #ffffff;
             --card-bg-dark: #1e293b;
+            --nav-bg-light: rgba(255, 255, 255, 0.97);
+            --nav-bg-dark: rgba(15, 23, 42, 0.97);
         }
 
         * {
@@ -51,14 +54,14 @@
             left: 0;
             right: 0;
             padding: 20px 0;
-            background-color: rgba(255, 255, 255, 0.97);
+            background-color: var(--nav-bg-light);
             backdrop-filter: blur(8px);
             z-index: 1000;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         }
 
         .dark-mode header {
-            background-color: rgba(15, 23, 42, 0.97);
+            background-color: var(--nav-bg-dark);
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
         }
 
@@ -66,6 +69,144 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+        }
+        
+        /* Navbar styles */
+        .navbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+        }
+        
+        .nav-logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .nav-menu {
+            display: flex;
+            gap: 20px;
+        }
+        
+        .nav-menu a {
+            color: var(--text-dark);
+            text-decoration: none;
+            font-weight: 500;
+            position: relative;
+            transition: color 0.3s;
+        }
+        
+        .dark-mode .nav-menu a {
+            color: var(--text-light);
+        }
+        
+        .nav-menu a:hover {
+            color: var(--primary-blue);
+        }
+        
+        .dark-mode .nav-menu a:hover {
+            color: var(--primary-teal);
+        }
+        
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--primary-blue);
+            transition: width 0.3s;
+        }
+        
+        .dark-mode .nav-menu a::after {
+            background-color: var(--primary-teal);
+        }
+        
+        .nav-menu a:hover::after {
+            width: 100%;
+        }
+        
+        .nav-controls {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        /* Language toggle */
+        .language-toggle {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            color: var(--primary-blue);
+            padding: 8px 12px;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            border: 1px solid var(--primary-blue);
+        }
+        
+        .dark-mode .language-toggle {
+            color: var(--primary-teal);
+            border-color: var(--primary-teal);
+        }
+        
+        .language-toggle:hover {
+            background-color: rgba(37, 99, 235, 0.1);
+        }
+        
+        .dark-mode .language-toggle:hover {
+            background-color: rgba(13, 148, 136, 0.1);
+        }
+        
+        /* Mobile menu */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--primary-blue);
+            cursor: pointer;
+        }
+        
+        .dark-mode .mobile-menu-btn {
+            color: var(--primary-teal);
+        }
+        
+        @media (max-width: 900px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .nav-menu {
+                position: fixed;
+                top: 80px;
+                left: 0;
+                right: 0;
+                background-color: var(--nav-bg-light);
+                flex-direction: column;
+                padding: 20px;
+                gap: 15px;
+                transform: translateY(-150%);
+                transition: transform 0.3s ease-in-out;
+                z-index: 999;
+            }
+            
+            .dark-mode .nav-menu {
+                background-color: var(--nav-bg-dark);
+            }
+            
+            .nav-menu.active {
+                transform: translateY(0);
+                box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            }
+            
+            .dark-mode .nav-menu.active {
+                box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+            }
         }
 
         .logo {
@@ -76,6 +217,10 @@
             font-weight: 700;
             color: var(--primary-blue);
             text-decoration: none;
+        }
+        
+        .dark-mode .logo {
+            color: var(--primary-teal);
         }
 
         .theme-toggle {
@@ -128,12 +273,11 @@
 
         .dark-mode .section-title {
             color: var(--primary-teal);
-        }
-
-        .cards-container {
+        }        .cards-container {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 30px;
+            align-items: stretch;
         }
 
         .test-card {
@@ -142,6 +286,9 @@
             padding: 30px;
             box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s, box-shadow 0.3s;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
         }
 
         .dark-mode .test-card {
@@ -152,13 +299,20 @@
         .test-card:hover {
             transform: translateY(-5px);
             box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
-        }
-
-        .dark-mode .test-card:hover {
+        }        .dark-mode .test-card:hover {
             box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.4);
         }
-
-        .test-card h3 {
+        
+        .test-card-header {
+            margin-bottom: 20px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .test-card-content {
+            margin-top: auto;
+        }.test-card h3 {
             font-size: 1.5rem;
             margin-bottom: 15px;
             color: var(--primary-blue);
@@ -171,9 +325,9 @@
         .test-card p {
             margin-bottom: 20px;
             color: inherit;
-        }
-
-        .input-group {
+            flex: 1;
+            min-height: 80px; /* Ensure consistent height for descriptions */
+        }        .input-group {
             margin-bottom: 20px;
         }
 
@@ -184,15 +338,14 @@
             border-radius: 8px;
             font-size: 1rem;
             font-family: inherit;
+            height: 48px; /* Fixed height for all inputs */
         }
 
         .dark-mode .input-group input {
             background-color: #334155;
             border-color: #475569;
             color: white;
-        }
-
-        .btn {
+        }        .btn {
             display: inline-block;
             padding: 12px 24px;
             background-color: var(--primary-blue);
@@ -204,6 +357,8 @@
             cursor: pointer;
             text-decoration: none;
             transition: background-color 0.3s, transform 0.2s;
+            width: 100%;
+            text-align: center;
         }
 
         .btn:hover {
@@ -221,6 +376,7 @@
 
         .test-results {
             margin-top: 20px;
+            min-height: 50px;
         }
 
         .test-result {
@@ -278,98 +434,173 @@
 
         .dark-mode footer {
             background-color: var(--card-bg-dark);
-        }
-
-        @media (max-width: 768px) {
+        }        @media (max-width: 768px) {
             .cards-container {
                 grid-template-columns: 1fr;
             }
+            
+            .test-card {
+                height: auto;
+                min-height: 380px;
+            }
+            
+            .test-card-header p {
+                min-height: auto;
+            }
+        }
+        
+        /* Language Content */
+        [lang="hi"] {
+            display: none;
+        }
+        
+        .lang-hi [lang="en"] {
+            display: none;
+        }
+        
+        .lang-hi [lang="hi"] {
+            display: block;
+        }
+        
+        .lang-hi span[lang="hi"],
+        .lang-hi a[lang="hi"],
+        .lang-hi button[lang="hi"] {
+            display: inline;
         }
     </style>
 </head>
-<body>
-    <header>
+<body>    <header>
         <div class="container">
-            <div class="header-container">
-                <a href="#" class="logo">
-                    <i class="fas fa-shield-alt"></i>
-                    <span>Internet Security Checker</span>
-                </a>
+            <div class="navbar">
+                <div class="nav-logo">
+                    <a href="#" class="logo">
+                        <i class="fas fa-shield-alt"></i>
+                        <span lang="en">SafeInternet</span>
+                        <span lang="hi">सुरक्षित इंटरनेट</span>
+                    </a>
+                </div>
                 
-                <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
-                    <i class="far fa-moon"></i>
-                </button>
+                <div class="nav-menu" id="navMenu">
+                    <a href="#" lang="en">Home</a>
+                    <a href="#" lang="hi">होम</a>
+                    
+                    <a href="#" lang="en">News</a>
+                    <a href="#" lang="hi">समाचार</a>
+                    
+                    <a href="#" lang="en">Knowledge Base</a>
+                    <a href="#" lang="hi">ज्ञान भंडार</a>
+                    
+                    <a href="#" lang="en">Hall of Fame</a>
+                    <a href="#" lang="hi">प्रसिद्धि की दीवार</a>
+                    
+                    <a href="#" lang="en">About</a>
+                    <a href="#" lang="hi">हमारे बारे में</a>
+                </div>
+                
+                <div class="nav-controls">
+                    <button class="language-toggle" id="langToggle">
+                        <i class="fas fa-globe"></i>
+                        <span lang="en">हिंदी</span>
+                        <span lang="hi">English</span>
+                    </button>
+                    
+                    <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
+                        <i class="far fa-moon"></i>
+                    </button>
+                    
+                    <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle mobile menu">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
             </div>
         </div>
-    </header>
-
-    <section class="banner">
+    </header>    <section class="banner">
         <div class="container">
-            <h1>Check Your Internet Security</h1>
-            <p>Test your website, email, and connection against modern internet security standards</p>
+            <h1 lang="en">Check Your Internet Security</h1>
+            <h1 lang="hi">अपनी इंटरनेट सुरक्षा जांचें</h1>
+            
+            <p lang="en">Test your website, email, and connection against modern internet security standards</p>
+            <p lang="hi">अपनी वेबसाइट, ईमेल और कनेक्शन को आधुनिक इंटरनेट सुरक्षा मानकों के साथ जांचें</p>
         </div>
     </section>
 
     <section class="tests-section">
         <div class="container">
-            <h2 class="section-title">Security Tests</h2>
-            
-            <div class="cards-container">
+            <h2 class="section-title" lang="en">Security Tests</h2>
+            <h2 class="section-title" lang="hi">सुरक्षा परीक्षण</h2>
+              <div class="cards-container">
                 <div class="test-card">
-                    <h3>Website Test</h3>
-                    <p>Check if your website meets modern standards for security, including HTTPS, IPv6, DNSSEC, and security headers.</p>
-                    
-                    <div class="input-group">
-                        <input type="text" id="websiteInput" placeholder="Enter website URL (e.g., example.com)" aria-label="Website URL">
+                    <div class="test-card-header">
+                        <h3 lang="en">Website Test</h3>
+                        <h3 lang="hi">वेबसाइट परीक्षण</h3>
+                        
+                        <p lang="en">Check if your website meets modern standards for security, including HTTPS, IPv6, DNSSEC, and security headers.</p>
+                        <p lang="hi">जांचें कि क्या आपकी वेबसाइट HTTPS, IPv6, DNSSEC और सुरक्षा हेडर सहित सुरक्षा के आधुनिक मानकों को पूरा करती है।</p>
                     </div>
                     
-                    <button class="btn" id="websiteTestBtn">
-                        <i class="fas fa-play"></i> Start Test
-                    </button>
-                    
-                    <div class="test-results" id="websiteResults"></div>
+                    <div class="test-card-content">
+                        <div class="input-group">
+                            <input type="text" id="websiteInput" placeholder="Enter website URL (e.g., example.com)" data-placeholder-hi="वेबसाइट URL दर्ज करें (उदाहरण, example.com)" aria-label="Website URL">
+                        </div>
+                        
+                        <button class="btn" id="websiteTestBtn">
+                            <i class="fas fa-play"></i> <span lang="en">Start Test</span><span lang="hi">परीक्षण शुरू करें</span>
+                        </button>
+                        
+                        <div class="test-results" id="websiteResults"></div>
+                    </div>
                 </div>
                 
                 <div class="test-card">
-                    <h3>Email Test</h3>
-                    <p>Verify your email setup for security standards like SPF, DKIM, DMARC, and STARTTLS.</p>
-                    
-                    <div class="input-group">
-                        <input type="text" id="emailInput" placeholder="Enter domain name (e.g., example.com)" aria-label="Email domain">
+                    <div class="test-card-header">
+                        <h3 lang="en">Email Test</h3>
+                        <h3 lang="hi">ईमेल परीक्षण</h3>
+                        
+                        <p lang="en">Verify your email setup for security standards like SPF, DKIM, DMARC, and STARTTLS.</p>
+                        <p lang="hi">SPF, DKIM, DMARC और STARTTLS जैसे सुरक्षा मानकों के लिए अपने ईमेल सेटअप को सत्यापित करें।</p>
                     </div>
                     
-                    <button class="btn" id="emailTestBtn">
-                        <i class="fas fa-play"></i> Start Test
-                    </button>
-                    
-                    <div class="test-results" id="emailResults"></div>
+                    <div class="test-card-content">
+                        <div class="input-group">
+                            <input type="text" id="emailInput" placeholder="Enter domain name (e.g., example.com)" data-placeholder-hi="डोमेन नाम दर्ज करें (उदाहरण, example.com)" aria-label="Email domain">
+                        </div>
+                        
+                        <button class="btn" id="emailTestBtn">
+                            <i class="fas fa-play"></i> <span lang="en">Start Test</span><span lang="hi">परीक्षण शुरू करें</span>
+                        </button>
+                        
+                        <div class="test-results" id="emailResults"></div>
+                    </div>
                 </div>
                 
                 <div class="test-card">
-                    <h3>Connection Test</h3>
-                    <p>Analyze your internet connection for IPv6 and other modern protocols.</p>
-                    
-                    <div class="input-group">
-                        <input type="text" placeholder="Your IP will be detected automatically" disabled>
+                    <div class="test-card-header">
+                        <h3 lang="en">Connection Test</h3>
+                        <h3 lang="hi">कनेक्शन परीक्षण</h3>
+                        
+                        <p lang="en">Analyze your internet connection for IPv6 and other modern protocols.</p>
+                        <p lang="hi">IPv6 और अन्य आधुनिक प्रोटोकॉल के लिए अपने इंटरनेट कनेक्शन का विश्लेषण करें।</p>
                     </div>
                     
-                    <button class="btn" id="connectionTestBtn">
-                        <i class="fas fa-play"></i> Start Test
-                    </button>
-                    
-                    <div class="test-results" id="connectionResults"></div>
+                    <div class="test-card-content">
+                        <div class="input-group">
+                            <input type="text" placeholder="Your IP will be detected automatically" data-placeholder-hi="आपका IP स्वचालित रूप से पहचाना जाएगा" disabled>
+                        </div>
+                        
+                        <button class="btn" id="connectionTestBtn">
+                            <i class="fas fa-play"></i> <span lang="en">Start Test</span><span lang="hi">परीक्षण शुरू करें</span>
+                        </button>
+                        
+                        <div class="test-results" id="connectionResults"></div>
+                    </div>
                 </div>
             </div>
         </div>
-    </section>
-
-    <footer>
+    </section>    <footer>
         <div class="container">
-            <p>&copy; 2025 Internet Security Checker</p>
+            <p>&copy; 2025 <span lang="en">SafeInternet</span><span lang="hi">सुरक्षित इंटरनेट</span></p>
         </div>
-    </footer>
-
-    <script>
+    </footer>    <script>
         // Theme Toggle
         const themeToggle = document.getElementById('themeToggle');
         const themeIcon = themeToggle.querySelector('i');
@@ -396,6 +627,61 @@
             }
         });
         
+        // Language Toggle
+        const langToggle = document.getElementById('langToggle');
+        
+        // Check for saved language preference
+        if (localStorage.getItem('language') === 'hi') {
+            document.body.classList.add('lang-hi');
+        }
+          // Language toggle functionality
+        langToggle.addEventListener('click', () => {
+            document.body.classList.toggle('lang-hi');
+            
+            if (document.body.classList.contains('lang-hi')) {
+                localStorage.setItem('language', 'hi');
+                updatePlaceholders('hi');
+            } else {
+                localStorage.setItem('language', 'en');
+                updatePlaceholders('en');
+            }
+        });
+        
+        // Update input placeholders based on language
+        function updatePlaceholders(lang) {
+            const inputs = document.querySelectorAll('input[data-placeholder-hi]');
+            inputs.forEach(input => {
+                if (lang === 'hi') {
+                    input.placeholder = input.getAttribute('data-placeholder-hi');
+                } else {
+                    input.placeholder = input.getAttribute('placeholder');
+                }
+            });
+        }
+        
+        // Initialize placeholders based on saved language preference
+        if (localStorage.getItem('language') === 'hi') {
+            updatePlaceholders('hi');
+        }
+        
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const navMenu = document.getElementById('navMenu');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            
+            // Change icon based on menu state
+            const icon = mobileMenuBtn.querySelector('i');
+            if (navMenu.classList.contains('active')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            } else {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        });
+        
         // API URL (change this to your actual API URL)
         const API_URL = 'http://localhost:5000/api';
         
@@ -410,10 +696,9 @@
                 alert('Please enter a domain name');
                 return;
             }
-            
-            websiteTestBtn.disabled = true;
-            websiteTestBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Testing...';
-            websiteResults.innerHTML = '<div class="test-result"><div class="test-name"><i class="fas fa-spinner spinner"></i> Running tests...</div></div>';
+              websiteTestBtn.disabled = true;
+            websiteTestBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> <span lang="en">Testing...</span><span lang="hi">परीक्षण जारी...</span>';
+            websiteResults.innerHTML = '<div class="test-result"><div class="test-name"><i class="fas fa-spinner spinner"></i> <span lang="en">Running tests...</span><span lang="hi">परीक्षण चल रहा है...</span></div></div>';
             
             try {
                 const response = await fetch(`${API_URL}/test/website`, {
@@ -430,7 +715,7 @@
                 websiteResults.innerHTML = `<div class="test-result failure"><div class="test-name"><i class="fas fa-exclamation-circle"></i> Error</div><div class="test-description">${error.message}</div></div>`;
             } finally {
                 websiteTestBtn.disabled = false;
-                websiteTestBtn.innerHTML = '<i class="fas fa-play"></i> Start Test';
+                websiteTestBtn.innerHTML = '<i class="fas fa-play"></i> <span lang="en">Start Test</span><span lang="hi">परीक्षण शुरू करें</span>';
             }
         });
         
@@ -445,10 +730,9 @@
                 alert('Please enter a domain name');
                 return;
             }
-            
-            emailTestBtn.disabled = true;
-            emailTestBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Testing...';
-            emailResults.innerHTML = '<div class="test-result"><div class="test-name"><i class="fas fa-spinner spinner"></i> Running tests...</div></div>';
+              emailTestBtn.disabled = true;
+            emailTestBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> <span lang="en">Testing...</span><span lang="hi">परीक्षण जारी...</span>';
+            emailResults.innerHTML = '<div class="test-result"><div class="test-name"><i class="fas fa-spinner spinner"></i> <span lang="en">Running tests...</span><span lang="hi">परीक्षण चल रहा है...</span></div></div>';
             
             try {
                 const response = await fetch(`${API_URL}/test/email`, {
@@ -465,7 +749,7 @@
                 emailResults.innerHTML = `<div class="test-result failure"><div class="test-name"><i class="fas fa-exclamation-circle"></i> Error</div><div class="test-description">${error.message}</div></div>`;
             } finally {
                 emailTestBtn.disabled = false;
-                emailTestBtn.innerHTML = '<i class="fas fa-play"></i> Start Test';
+                emailTestBtn.innerHTML = '<i class="fas fa-play"></i> <span lang="en">Start Test</span><span lang="hi">परीक्षण शुरू करें</span>';
             }
         });
         
@@ -473,10 +757,9 @@
         const connectionTestBtn = document.getElementById('connectionTestBtn');
         const connectionResults = document.getElementById('connectionResults');
         
-        connectionTestBtn.addEventListener('click', async () => {
-            connectionTestBtn.disabled = true;
-            connectionTestBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Testing...';
-            connectionResults.innerHTML = '<div class="test-result"><div class="test-name"><i class="fas fa-spinner spinner"></i> Running tests...</div></div>';
+        connectionTestBtn.addEventListener('click', async () => {            connectionTestBtn.disabled = true;
+            connectionTestBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> <span lang="en">Testing...</span><span lang="hi">परीक्षण जारी...</span>';
+            connectionResults.innerHTML = '<div class="test-result"><div class="test-name"><i class="fas fa-spinner spinner"></i> <span lang="en">Running tests...</span><span lang="hi">परीक्षण चल रहा है...</span></div></div>';
             
             try {
                 const response = await fetch(`${API_URL}/test/connection`);
@@ -486,14 +769,21 @@
                 connectionResults.innerHTML = `<div class="test-result failure"><div class="test-name"><i class="fas fa-exclamation-circle"></i> Error</div><div class="test-description">${error.message}</div></div>`;
             } finally {
                 connectionTestBtn.disabled = false;
-                connectionTestBtn.innerHTML = '<i class="fas fa-play"></i> Start Test';
+                connectionTestBtn.innerHTML = '<i class="fas fa-play"></i> <span lang="en">Start Test</span><span lang="hi">परीक्षण शुरू करें</span>';
             }
         });
-        
-        // Function to display test results
+          // Function to display test results
         function displayResults(container, data) {
             if (data.error) {
-                container.innerHTML = `<div class="test-result failure"><div class="test-name"><i class="fas fa-exclamation-circle"></i> Error</div><div class="test-description">${data.error}</div></div>`;
+                container.innerHTML = `
+                <div class="test-result failure">
+                    <div class="test-name">
+                        <i class="fas fa-exclamation-circle"></i> 
+                        <span lang="en">Error</span>
+                        <span lang="hi">त्रुटि</span>
+                    </div>
+                    <div class="test-description">${data.error}</div>
+                </div>`;
                 return;
             }
             
@@ -506,7 +796,8 @@
                 <div class="test-result ${scoreClass}">
                     <div class="test-name">
                         <i class="fas ${data.score >= 80 ? 'fa-check-circle' : data.score >= 50 ? 'fa-exclamation-triangle' : 'fa-times-circle'}"></i>
-                        Overall Score: ${data.score}/100
+                        <span lang="en">Overall Score: ${data.score}/100</span>
+                        <span lang="hi">समग्र स्कोर: ${data.score}/100</span>
                     </div>
                 </div>`;
             }
@@ -520,7 +811,8 @@
                     <div class="test-result ${categoryScoreClass}">
                         <div class="test-name">
                             <i class="fas ${categoryData.score >= 80 ? 'fa-check-circle' : categoryData.score >= 50 ? 'fa-exclamation-triangle' : 'fa-times-circle'}"></i>
-                            ${categoryData.name}: ${categoryData.score}/100
+                            <span lang="en">${categoryData.name}: ${categoryData.score}/100</span>
+                            <span lang="hi">${getCategoryNameHindi(categoryData.name)}: ${categoryData.score}/100</span>
                         </div>`;
                     
                     // Display individual tests
@@ -531,7 +823,8 @@
                             html += `
                             <div class="test-description">
                                 <i class="fas ${testData.score >= 80 ? 'fa-check' : testData.score >= 50 ? 'fa-exclamation' : 'fa-times'}" style="font-size: 0.8em;"></i>
-                                ${testData.name}: ${testData.status}
+                                <span lang="en">${testData.name}: ${testData.status}</span>
+                                <span lang="hi">${getTestNameHindi(testData.name)}: ${getStatusHindi(testData.status)}</span>
                             </div>`;
                         }
                     }
@@ -541,6 +834,60 @@
             }
             
             container.innerHTML = html;
+        }
+        
+        // Helper function to translate category names to Hindi
+        function getCategoryNameHindi(name) {
+            const translations = {
+                'HTTPS': 'HTTPS',
+                'IPv6': 'IPv6',
+                'DNSSEC': 'DNSSEC',
+                'Security Headers': 'सुरक्षा हेडर्स',
+                'Email Security': 'ईमेल सुरक्षा',
+                'SPF': 'SPF',
+                'DKIM': 'DKIM',
+                'DMARC': 'DMARC',
+                'Connection': 'कनेक्शन',
+                'SSL/TLS': 'SSL/TLS'
+            };
+            return translations[name] || name;
+        }
+        
+        // Helper function to translate test names to Hindi
+        function getTestNameHindi(name) {
+            const translations = {
+                'HTTPS Available': 'HTTPS उपलब्ध',
+                'Modern TLS': 'आधुनिक TLS',
+                'HSTS': 'HSTS',
+                'IPv6 Support': 'IPv6 समर्थन',
+                'DNSSEC Enabled': 'DNSSEC सक्षम',
+                'Content Security Policy': 'कंटेंट सिक्योरिटी पॉलिसी',
+                'X-XSS-Protection': 'X-XSS-प्रोटेक्शन',
+                'X-Frame-Options': 'X-फ्रेम-ऑप्शन्स',
+                'SPF Record': 'SPF रिकॉर्ड',
+                'DKIM Record': 'DKIM रिकॉर्ड',
+                'DMARC Record': 'DMARC रिकॉर्ड',
+                'STARTTLS Support': 'STARTTLS समर्थन'
+            };
+            return translations[name] || name;
+        }
+        
+        // Helper function to translate status messages to Hindi
+        function getStatusHindi(status) {
+            const translations = {
+                'Passed': 'पास',
+                'Failed': 'फेल',
+                'Warning': 'चेतावनी',
+                'Not Found': 'नहीं मिला',
+                'Found': 'मिला',
+                'Enabled': 'सक्षम',
+                'Disabled': 'अक्षम',
+                'Valid': 'मान्य',
+                'Invalid': 'अमान्य',
+                'Secure': 'सुरक्षित',
+                'Insecure': 'असुरक्षित'
+            };
+            return translations[status] || status;
         }
     </script>
 </body>
