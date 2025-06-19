@@ -49,20 +49,35 @@ langToggle.addEventListener('click', () => {
 function updatePlaceholders(lang) {
     const inputs = document.querySelectorAll('input[data-placeholder-hi]');
     inputs.forEach(input => {
+        // Store the original English placeholder if it hasn't been stored yet
+        if (!input.getAttribute('data-placeholder-en')) {
+            input.setAttribute('data-placeholder-en', input.placeholder);
+        }
+        
         if (lang === 'hi') {
             input.placeholder = input.getAttribute('data-placeholder-hi');
             input.style.fontFamily = "'Noto Sans Devanagari', sans-serif";
         } else {
-            input.placeholder = input.getAttribute('placeholder');
+            input.placeholder = input.getAttribute('data-placeholder-en');
             input.style.fontFamily = "inherit";
         }
     });
 }
 
-// Initialize placeholders based on saved language preference
-if (localStorage.getItem('language') === 'hi') {
-    updatePlaceholders('hi');
-}
+// Store original English placeholders on page load
+document.addEventListener('DOMContentLoaded', function() {
+    const inputs = document.querySelectorAll('input[data-placeholder-hi]');
+    inputs.forEach(input => {
+        input.setAttribute('data-placeholder-en', input.placeholder);
+    });
+    
+    // If the language is already set to Hindi, update placeholders accordingly
+    if (localStorage.getItem('language') === 'hi') {
+        updatePlaceholders('hi');
+    }
+});
+
+// The initialization of placeholders is now handled in the DOMContentLoaded event above
 
 // Mobile Menu Toggle
 const mobileMenuBtn = document.getElementById('mobileMenuBtn');
