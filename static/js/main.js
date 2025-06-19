@@ -1,0 +1,81 @@
+// Theme Toggle
+const themeToggle = document.getElementById('themeToggle');
+const themeIcon = themeToggle.querySelector('i');
+
+// Check for saved theme preference
+if (localStorage.getItem('darkMode') === 'true') {
+    document.body.classList.add('dark-mode');
+    themeIcon.classList.remove('far', 'fa-moon');
+    themeIcon.classList.add('fas', 'fa-sun');
+}
+
+// Theme toggle functionality
+themeToggle.addEventListener('click', () => {
+    document.body.classList.toggle('dark-mode');
+    
+    if (document.body.classList.contains('dark-mode')) {
+        themeIcon.classList.remove('far', 'fa-moon');
+        themeIcon.classList.add('fas', 'fa-sun');
+        localStorage.setItem('darkMode', 'true');
+    } else {
+        themeIcon.classList.remove('fas', 'fa-sun');
+        themeIcon.classList.add('far', 'fa-moon');
+        localStorage.setItem('darkMode', 'false');
+    }
+});
+
+// Language Toggle
+const langToggle = document.getElementById('langToggle');
+
+// Check for saved language preference
+if (localStorage.getItem('language') === 'hi') {
+    document.body.classList.add('lang-hi');
+}
+
+// Language toggle functionality
+langToggle.addEventListener('click', () => {
+    document.body.classList.toggle('lang-hi');
+    
+    if (document.body.classList.contains('lang-hi')) {
+        localStorage.setItem('language', 'hi');
+        updatePlaceholders('hi');
+    } else {
+        localStorage.setItem('language', 'en');
+        updatePlaceholders('en');
+    }
+});
+
+// Update input placeholders based on language
+function updatePlaceholders(lang) {
+    const inputs = document.querySelectorAll('input[data-placeholder-hi]');
+    inputs.forEach(input => {
+        if (lang === 'hi') {
+            input.placeholder = input.getAttribute('data-placeholder-hi');
+        } else {
+            input.placeholder = input.getAttribute('placeholder');
+        }
+    });
+}
+
+// Initialize placeholders based on saved language preference
+if (localStorage.getItem('language') === 'hi') {
+    updatePlaceholders('hi');
+}
+
+// Mobile Menu Toggle
+const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+const navMenu = document.getElementById('navMenu');
+
+mobileMenuBtn.addEventListener('click', () => {
+    navMenu.classList.toggle('active');
+    
+    // Change icon based on menu state
+    const icon = mobileMenuBtn.querySelector('i');
+    if (navMenu.classList.contains('active')) {
+        icon.classList.remove('fa-bars');
+        icon.classList.add('fa-times');
+    } else {
+        icon.classList.remove('fa-times');
+        icon.classList.add('fa-bars');
+    }
+});
