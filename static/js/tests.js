@@ -1,4 +1,4 @@
-// API URL (change this to your actual API URL)
+// API URL
 const API_URL = '/api';
 
 // Website Test
@@ -17,8 +17,7 @@ websiteTestBtn.addEventListener('click', async () => {
     websiteTestBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> <span lang="en">Testing...</span><span lang="hi">परीक्षण जारी...</span>';
     websiteResults.innerHTML = '<div class="test-result"><div class="test-name"><i class="fas fa-spinner spinner"></i> <span lang="en">Running tests...</span><span lang="hi">परीक्षण चल रहा है...</span></div></div>';
     
-    try {
-        const response = await fetch(`${API_URL}/test/website`, {
+    try {        const response = await fetch(`${API_URL}/test/website`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, request, send_from_directory
+from flask import Flask, jsonify, request, render_template
 from flask_cors import CORS
 from config import Config
 import logging
@@ -25,7 +25,7 @@ logger = logging.getLogger(__name__)
 
 @app.route('/')
 def index():
-    return send_from_directory(app.static_folder, 'index.html')
+    return render_template('index.html')
 
 @app.route('/api')
 def api_info():
