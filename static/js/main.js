@@ -51,8 +51,10 @@ function updatePlaceholders(lang) {
     inputs.forEach(input => {
         if (lang === 'hi') {
             input.placeholder = input.getAttribute('data-placeholder-hi');
+            input.style.fontFamily = "'Noto Sans Devanagari', sans-serif";
         } else {
             input.placeholder = input.getAttribute('placeholder');
+            input.style.fontFamily = "inherit";
         }
     });
 }
