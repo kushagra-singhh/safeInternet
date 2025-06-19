@@ -5,11 +5,11 @@
     --text-dark: #1e293b;
     --text-light: #f8fafc;
     --bg-light: #f8fafc;
-    --bg-dark: #0f172a;
+    --bg-dark: #0a1421; /* Darker navy blue from the image */
     --card-bg-light: #ffffff;
-    --card-bg-dark: #1e293b;
+    --card-bg-dark: #0f1b2b; /* Slightly lighter navy blue for cards */
     --nav-bg-light: rgba(255, 255, 255, 0.97);
-    --nav-bg-dark: rgba(15, 23, 42, 0.97);
+    --nav-bg-dark: rgba(10, 20, 33, 0.97); /* Updated navy blue with opacity */
 }
 
 * {
@@ -97,7 +97,7 @@ header {
 }
 
 .dark-mode .nav-menu a:hover {
-    color: var(--primary-teal);
+    color: #0d9488; /* Teal color from image */
 }
 
 .nav-menu a::after {
@@ -112,7 +112,7 @@ header {
 }
 
 .dark-mode .nav-menu a::after {
-    background-color: var(--primary-teal);
+    background-color: #0d9488; /* Teal color from image */
 }
 
 .nav-menu a:hover::after {
@@ -141,8 +141,8 @@ header {
 }
 
 .dark-mode .language-toggle {
-    color: var(--primary-teal);
-    border-color: var(--primary-teal);
+    color: #0d9488; /* Teal color from image */
+    border-color: #0d9488; /* Teal color from image */
 }
 
 .language-toggle:hover {
@@ -164,7 +164,7 @@ header {
 }
 
 .dark-mode .mobile-menu-btn {
-    color: var(--primary-teal);
+    color: #0d9488; /* Teal color from image */
 }
 
 @media (max-width: 900px) {
@@ -211,7 +211,7 @@ header {
 }
 
 .dark-mode .logo {
-    color: var(--primary-teal);
+    color: #0d9488; /* Teal color from image */
 }
 
 .theme-toggle {
@@ -230,7 +230,7 @@ header {
 }
 
 .dark-mode .theme-toggle {
-    color: var(--primary-teal);
+    color: #0d9488; /* Teal color from image */
 }
 
 .banner {
@@ -240,6 +240,10 @@ header {
     text-align: center;
     border-radius: 0 0 20px 20px;
     margin-bottom: 40px;
+}
+
+.dark-mode .banner {
+    background: linear-gradient(135deg, #0a4d48, #0a1b31); /* Darker teal to navy gradient from image */
 }
 
 .banner h1 {
@@ -263,7 +267,7 @@ header {
 }
 
 .dark-mode .section-title {
-    color: var(--primary-teal);
+    color: #0d9488; /* Teal color from image */
 }
 
 .cards-container {
@@ -316,7 +320,7 @@ header {
 }
 
 .dark-mode .test-card h3 {
-    color: var(--primary-teal);
+    color: #0d9488; /* Teal color from image */
 }
 
 .test-card p {
@@ -341,8 +345,8 @@ header {
 }
 
 .dark-mode .input-group input {
-    background-color: #334155;
-    border-color: #475569;
+    background-color: #101f30; /* Darker navy from image for inputs */
+    border-color: #1a2c3e; /* Slightly lighter border */
     color: white;
 }
 
@@ -368,11 +372,11 @@ header {
 }
 
 .dark-mode .btn {
-    background-color: var(--primary-teal);
+    background-color: #0d9488; /* Teal color from image */
 }
 
 .dark-mode .btn:hover {
-    background-color: #0f766e;
+    background-color: #0f766e; /* Slightly darker teal on hover */
 }
 
 .test-results {
