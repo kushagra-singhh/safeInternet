@@ -1,5 +1,5 @@
-/* Import Noto Sans Devanagari font */
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;500;600;700&display=swap');
+/* Import Noto Sans Devanagari and Noto Sans Bengali fonts */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;500;600;700&family=Noto+Sans+Bengali:wght@400;500;600;700&display=swap');
 
 :root {
     --primary-blue: #2563eb;
@@ -369,9 +369,13 @@ header {
     text-align: center;
 }
 
-/* Apply Noto Sans Devanagari font to Hindi text in buttons */
+/* Apply proper fonts to Hindi and Bengali text in buttons */
 .btn [lang="hi"] {
     font-family: 'Noto Sans Devanagari', sans-serif;
+}
+
+.btn [lang="bn"] {
+    font-family: 'Noto Sans Bengali', sans-serif;
 }
 
 .btn:hover {
@@ -465,18 +469,34 @@ footer {
 }
 
 /* Language Content */
-[lang="hi"] {
+[lang="hi"], [lang="bn"] {
     display: none;
+}
+
+[lang="hi"] {
     font-family: 'Noto Sans Devanagari', sans-serif;
 }
 
-.lang-hi [lang="en"] {
+[lang="bn"] {
+    font-family: 'Noto Sans Bengali', sans-serif;
+}
+
+.lang-hi [lang="en"], .lang-hi [lang="bn"] {
+    display: none;
+}
+
+.lang-bn [lang="en"], .lang-bn [lang="hi"] {
     display: none;
 }
 
 .lang-hi [lang="hi"] {
     display: block;
     font-family: 'Noto Sans Devanagari', sans-serif;
+}
+
+.lang-bn [lang="bn"] {
+    display: block;
+    font-family: 'Noto Sans Bengali', sans-serif;
 }
 
 .lang-hi span[lang="hi"],
@@ -486,20 +506,32 @@ footer {
     font-family: 'Noto Sans Devanagari', sans-serif;
 }
 
-/* Fine-tuned Hindi font styling */
+.lang-bn span[lang="bn"],
+.lang-bn a[lang="bn"],
+.lang-bn button[lang="bn"] {
+    display: inline;
+    font-family: 'Noto Sans Bengali', sans-serif;
+}
+
+/* Fine-tuned font styling */
 [lang="hi"] {
     letter-spacing: -0.01em; /* Slight letter spacing adjustment */
 }
 
+[lang="bn"] {
+    letter-spacing: -0.01em; /* Slight letter spacing adjustment */
+}
+
 /* Match font weights with Poppins */
-h1[lang="hi"], h2[lang="hi"], h3[lang="hi"] {
+h1[lang="hi"], h2[lang="hi"], h3[lang="hi"],
+h1[lang="bn"], h2[lang="bn"], h3[lang="bn"] {
     font-weight: 700;
 }
 
-.nav-menu a[lang="hi"] {
+.nav-menu a[lang="hi"], .nav-menu a[lang="bn"] {
     font-weight: 500;
 }
 
-.banner p[lang="hi"] {
+.banner p[lang="hi"], .banner p[lang="bn"] {
     font-weight: 400;
 }

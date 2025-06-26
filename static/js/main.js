@@ -28,26 +28,40 @@ themeToggle.addEventListener('click', () => {
 const langToggle = document.getElementById('langToggle');
 
 // Check for saved language preference
-if (localStorage.getItem('language') === 'hi') {
-    document.body.classList.add('lang-hi');
+const savedLanguage = localStorage.getItem('language');
+if (savedLanguage) {
+    if (savedLanguage === 'hi') {
+        document.body.classList.add('lang-hi');
+    } else if (savedLanguage === 'bn') {
+        document.body.classList.add('lang-bn');
+    }
 }
 
 // Language toggle functionality
 langToggle.addEventListener('click', () => {
-    document.body.classList.toggle('lang-hi');
-    
+    // Determine the current language and cycle to the next one
     if (document.body.classList.contains('lang-hi')) {
-        localStorage.setItem('language', 'hi');
-        updatePlaceholders('hi');
-    } else {
+        // Currently Hindi, switch to Bengali
+        document.body.classList.remove('lang-hi');
+        document.body.classList.add('lang-bn');
+        localStorage.setItem('language', 'bn');
+        updatePlaceholders('bn');
+    } else if (document.body.classList.contains('lang-bn')) {
+        // Currently Bengali, switch to English
+        document.body.classList.remove('lang-bn');
         localStorage.setItem('language', 'en');
         updatePlaceholders('en');
+    } else {
+        // Currently English, switch to Hindi
+        document.body.classList.add('lang-hi');
+        localStorage.setItem('language', 'hi');
+        updatePlaceholders('hi');
     }
 });
 
 // Update input placeholders based on language
 function updatePlaceholders(lang) {
-    const inputs = document.querySelectorAll('input[data-placeholder-hi]');
+    const inputs = document.querySelectorAll('input[data-placeholder-hi], input[data-placeholder-bn]');
     inputs.forEach(input => {
         // Store the original English placeholder if it hasn't been stored yet
         if (!input.getAttribute('data-placeholder-en')) {
@@ -57,6 +71,9 @@ function updatePlaceholders(lang) {
         if (lang === 'hi') {
             input.placeholder = input.getAttribute('data-placeholder-hi');
             input.style.fontFamily = "'Noto Sans Devanagari', sans-serif";
+        } else if (lang === 'bn') {
+            input.placeholder = input.getAttribute('data-placeholder-bn');
+            input.style.fontFamily = "'Noto Sans Bengali', sans-serif";
         } else {
             input.placeholder = input.getAttribute('data-placeholder-en');
             input.style.fontFamily = "inherit";
@@ -66,14 +83,15 @@ function updatePlaceholders(lang) {
 
 // Store original English placeholders on page load
 document.addEventListener('DOMContentLoaded', function() {
-    const inputs = document.querySelectorAll('input[data-placeholder-hi]');
+    const inputs = document.querySelectorAll('input[data-placeholder-hi], input[data-placeholder-bn]');
     inputs.forEach(input => {
         input.setAttribute('data-placeholder-en', input.placeholder);
     });
     
-    // If the language is already set to Hindi, update placeholders accordingly
-    if (localStorage.getItem('language') === 'hi') {
-        updatePlaceholders('hi');
+    // Check saved language and update placeholders accordingly
+    const savedLanguage = localStorage.getItem('language');
+    if (savedLanguage) {
+        updatePlaceholders(savedLanguage);
     }
 });
 

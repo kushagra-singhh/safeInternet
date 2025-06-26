@@ -6,7 +6,7 @@
 ![Flask](https://img.shields.io/badge/Flask-2.2.3-lightgrey?style=for-the-badge&logo=flask)
 ![Python](https://img.shields.io/badge/Python-3.8+-green?style=for-the-badge&logo=python)
 ![License](https://img.shields.io/badge/License-MIT-yellow?style=for-the-badge)
-![Bilingual](https://img.shields.io/badge/Bilingual-EN|HI-orange?style=for-the-badge)
+![Multilingual](https://img.shields.io/badge/Multilingual-EN|HI|BN-orange?style=for-the-badge)
 
 </div>
 
@@ -16,7 +16,7 @@
 
 ## 📋 Overview
 
-Internet Security Checker is a comprehensive web application for testing your internet presence against modern security standards. This tool provides detailed security assessments of websites, email configurations, and internet connections with an intuitive, responsive user interface and detailed scoring reports. Available in both English and Hindi, with light and dark themes.
+Internet Security Checker is a comprehensive web application for testing your internet presence against modern security standards. This tool provides detailed security assessments of websites, email configurations, and internet connections with an intuitive, responsive user interface and detailed scoring reports. Available in English, Hindi, and Bengali, with light and dark themes.
 
 <div align="center">
   <img src="screenshots/main-light.png" alt="Internet Security Checker Light Theme" width="45%" />
@@ -26,7 +26,7 @@ Internet Security Checker is a comprehensive web application for testing your in
 ## ✨ Key Features
 
 - **Responsive Design** - Optimized for desktop and mobile devices
-- **Bilingual Support** - Full English and Hindi language support
+- **Multilingual Support** - Full English, Hindi, and Bengali language support
 - **Theme Switching** - Toggle between light and dark themes
 - **Comprehensive Testing** - Website, email, and connection security analysis
 - **Interactive Results** - Detailed, easy-to-understand test cards
@@ -108,7 +108,7 @@ The application will be accessible at http://localhost:5000
 ## �️ Usage Instructions
 
 1. Open your browser and navigate to `http://localhost:5000`
-2. Choose your preferred language (English or Hindi) using the language toggle
+2. Choose your preferred language (English, Hindi, or Bengali) using the language toggle
 3. Select your preferred theme (Light or Dark) using the theme toggle
 4. Enter a domain name in the input field
 5. Select the test type: Website, Email, or Connection

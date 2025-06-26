@@ -1,46 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
+<head>    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Internet India - Test Modern Internet Standards</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Noto+Sans+Devanagari:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Noto+Sans+Devanagari:wght@400;500;600;700&family=Noto+Sans+Bengali:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/static/css/styles.css">
 </head>
 <body>    <header>
         <div class="container">
-            <div class="navbar">
-                <div class="nav-logo">
+            <div class="navbar">                <div class="nav-logo">
                     <a href="#" class="logo">
                         <i class="fas fa-shield-alt"></i>
                         <span lang="en">SafeInternet</span>
                         <span lang="hi">सुरक्षित इंटरनेट</span>
+                        <span lang="bn">নিরাপদ ইন্টারনেট</span>
                     </a>
                 </div>
-                
-                <div class="nav-menu" id="navMenu">
+                  <div class="nav-menu" id="navMenu">
                     <a href="#" lang="en">Home</a>
                     <a href="#" lang="hi">होम</a>
+                    <a href="#" lang="bn">হোম</a>
                     
                     <a href="#" lang="en">News</a>
                     <a href="#" lang="hi">समाचार</a>
+                    <a href="#" lang="bn">খবর</a>
                     
                     <a href="#" lang="en">Knowledge Base</a>
                     <a href="#" lang="hi">ज्ञान भंडार</a>
+                    <a href="#" lang="bn">জ্ঞান ভাণ্ডার</a>
                     
                     <a href="#" lang="en">Hall of Fame</a>
                     <a href="#" lang="hi">प्रसिद्धि की दीवार</a>
+                    <a href="#" lang="bn">খ্যাতির হল</a>
                     
                     <a href="#" lang="en">About</a>
                     <a href="#" lang="hi">हमारे बारे में</a>
+                    <a href="#" lang="bn">আমাদের সম্পর্কে</a>
                 </div>
-                
-                <div class="nav-controls">
+                  <div class="nav-controls">
                     <button class="language-toggle" id="langToggle">
                         <i class="fas fa-globe"></i>
-                        <span lang="en">हिंदी</span>
-                        <span lang="hi">English</span>
+                        <span lang="en">भाषा / বাংলা</span>
+                        <span lang="hi">English / বাংলা</span>
+                        <span lang="bn">English / हिंदी</span>
                     </button>
                     
                     <button class="theme-toggle" id="themeToggle" aria-label="Toggle theme">
@@ -57,77 +60,82 @@
         <div class="container">
             <h1 lang="en">Check Your Internet Security</h1>
             <h1 lang="hi">अपनी इंटरनेट सुरक्षा जांचें</h1>
+            <h1 lang="bn">আপনার ইন্টারনেট নিরাপত্তা যাচাই করুন</h1>
             
             <p lang="en">Test your website, email, and connection against modern internet security standards</p>
             <p lang="hi">अपनी वेबसाइट, ईमेल और कनेक्शन को आधुनिक इंटरनेट सुरक्षा मानकों के साथ जांचें</p>
+            <p lang="bn">আপনার ওয়েবসাইট, ইমেল এবং সংযোগ আধুনিক ইন্টারনেট নিরাপত্তা মানদণ্ডের বিপরীতে পরীক্ষা করুন</p>
         </div>
     </section>
 
     <section class="tests-section">
-        <div class="container">
-            <h2 class="section-title" lang="en">Security Tests</h2>
+        <div class="container">            <h2 class="section-title" lang="en">Security Tests</h2>
             <h2 class="section-title" lang="hi">सुरक्षा परीक्षण</h2>
-              <div class="cards-container">
-                <div class="test-card">
+            <h2 class="section-title" lang="bn">নিরাপত্তা পরীক্ষা</h2>
+              <div class="cards-container">                <div class="test-card">
                     <div class="test-card-header">
                         <h3 lang="en">Website Test</h3>
                         <h3 lang="hi">वेबसाइट परीक्षण</h3>
+                        <h3 lang="bn">ওয়েবসাইট পরীক্ষা</h3>
                         
                         <p lang="en">Check if your website meets modern standards for security, including HTTPS, IPv6, DNSSEC, and security headers.</p>
                         <p lang="hi">जांचें कि क्या आपकी वेबसाइट HTTPS, IPv6, DNSSEC और सुरक्षा हेडर सहित सुरक्षा के आधुनिक मानकों को पूरा करती है।</p>
+                        <p lang="bn">আপনার ওয়েবসাইট HTTPS, IPv6, DNSSEC এবং নিরাপত্তা হেডার সহ নিরাপত্তার আধুনিক মানদণ্ড পূরণ করে কিনা তা পরীক্ষা করুন।</p>
                     </div>
                     
                     <div class="test-card-content">
                         <div class="input-group">
-                            <input type="text" id="websiteInput" placeholder="Enter website URL (e.g., example.com)" data-placeholder-hi="वेबसाइट URL दर्ज करें (उदाहरण, example.com)" aria-label="Website URL">
+                            <input type="text" id="websiteInput" placeholder="Enter website URL (e.g., example.com)" data-placeholder-hi="वेबसाइट URL दर्ज करें (उदाहरण, example.com)" data-placeholder-bn="ওয়েবসাইট URL লিখুন (উদাহরণ, example.com)" aria-label="Website URL">
                         </div>
                         
                         <button class="btn" id="websiteTestBtn">
-                            <i class="fas fa-play"></i> <span lang="en">Start Test</span><span lang="hi">परीक्षण शुरू करें</span>
+                            <i class="fas fa-play"></i> <span lang="en">Start Test</span><span lang="hi">परीक्षण शुरू करें</span><span lang="bn">পরীক্ষা শুরু করুন</span>
                         </button>
                         
                         <div class="test-results" id="websiteResults"></div>
                     </div>
                 </div>
-                
-                <div class="test-card">
+                  <div class="test-card">
                     <div class="test-card-header">
                         <h3 lang="en">Email Test</h3>
                         <h3 lang="hi">ईमेल परीक्षण</h3>
+                        <h3 lang="bn">ইমেল পরীক্ষা</h3>
                         
                         <p lang="en">Verify your email setup for security standards like SPF, DKIM, DMARC, and STARTTLS.</p>
                         <p lang="hi">SPF, DKIM, DMARC और STARTTLS जैसे सुरक्षा मानकों के लिए अपने ईमेल सेटअप को सत्यापित करें।</p>
+                        <p lang="bn">SPF, DKIM, DMARC এবং STARTTLS এর মতো নিরাপত্তা মানদণ্ডের জন্য আপনার ইমেল সেটআপ যাচাই করুন।</p>
                     </div>
                     
                     <div class="test-card-content">
                         <div class="input-group">
-                            <input type="text" id="emailInput" placeholder="Enter domain name (e.g., example.com)" data-placeholder-hi="डोमेन नाम दर्ज करें (उदाहरण, example.com)" aria-label="Email domain">
+                            <input type="text" id="emailInput" placeholder="Enter domain name (e.g., example.com)" data-placeholder-hi="डोमेन नाम दर्ज करें (उदाहरण, example.com)" data-placeholder-bn="ডোমেন নাম লিখুন (উদাহরণ, example.com)" aria-label="Email domain">
                         </div>
                         
                         <button class="btn" id="emailTestBtn">
-                            <i class="fas fa-play"></i> <span lang="en">Start Test</span><span lang="hi">परीक्षण शुरू करें</span>
+                            <i class="fas fa-play"></i> <span lang="en">Start Test</span><span lang="hi">परीक्षण शुरू करें</span><span lang="bn">পরীক্ষা শুরু করুন</span>
                         </button>
                         
                         <div class="test-results" id="emailResults"></div>
                     </div>
                 </div>
-                
-                <div class="test-card">
+                  <div class="test-card">
                     <div class="test-card-header">
                         <h3 lang="en">Connection Test</h3>
                         <h3 lang="hi">कनेक्शन परीक्षण</h3>
+                        <h3 lang="bn">সংযোগ পরীক্ষা</h3>
                         
                         <p lang="en">Analyze your internet connection for IPv6 and other modern protocols.</p>
                         <p lang="hi">IPv6 और अन्य आधुनिक प्रोटोकॉल के लिए अपने इंटरनेट कनेक्शन का विश्लेषण करें।</p>
+                        <p lang="bn">IPv6 এবং অন্যান্য আধুনিক প্রোটোকল সম্পর্কে আপনার ইন্টারনেট সংযোগ বিশ্লেষণ করুন।</p>
                     </div>
                     
                     <div class="test-card-content">
                         <div class="input-group">
-                            <input type="text" placeholder="Your IP will be detected automatically" data-placeholder-hi="आपका IP स्वचालित रूप से पहचाना जाएगा" disabled>
+                            <input type="text" placeholder="Your IP will be detected automatically" data-placeholder-hi="आपका IP स्वचालित रूप से पहचाना जाएगा" data-placeholder-bn="আপনার IP স্বয়ংক্রিয়ভাবে সনাক্ত করা হবে" disabled>
                         </div>
                         
                         <button class="btn" id="connectionTestBtn">
-                            <i class="fas fa-play"></i> <span lang="en">Start Test</span><span lang="hi">परीक्षण शुरू करें</span>
+                            <i class="fas fa-play"></i> <span lang="en">Start Test</span><span lang="hi">परीक्षण शुरू करें</span><span lang="bn">পরীক্ষা শুরু করুন</span>
                         </button>
                         
                         <div class="test-results" id="connectionResults"></div>
@@ -137,7 +145,7 @@
         </div>
     </section>    <footer>
         <div class="container">
-            <p>&copy; 2025 <span lang="en">SafeInternet</span><span lang="hi">सुरक्षित इंटरनेट</span></p>
+            <p>&copy; 2025 <span lang="en">SafeInternet</span><span lang="hi">सुरक्षित इंटरनेट</span><span lang="bn">নিরাপদ ইন্টারনেট</span></p>
         </div>
     </footer>
     
